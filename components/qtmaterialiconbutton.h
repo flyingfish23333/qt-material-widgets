@@ -11,6 +11,7 @@ class QtMaterialIconButton : public QAbstractButton
 
 public:
     explicit QtMaterialIconButton(const QIcon &icon, QWidget *parent = 0);
+    explicit QtMaterialIconButton(QWidget *parent = 0);
     ~QtMaterialIconButton();
 
     QSize sizeHint() const Q_DECL_OVERRIDE;

@@ -4,8 +4,6 @@ CONFIG += c++11
 SOURCES = mainwindow.cpp \
     main.cpp \
     avatarsettingseditor.cpp \
-    badgesettingseditor.cpp \
-    checkboxsettingseditor.cpp \
     fabsettingseditor.cpp \
     raisedbuttonsettingseditor.cpp \
     flatbuttonsettingseditor.cpp \
@@ -13,21 +11,15 @@ SOURCES = mainwindow.cpp \
     progresssettingseditor.cpp \
     circularprogresssettingseditor.cpp \
     slidersettingseditor.cpp \
-    radiobuttonsettingseditor.cpp \
-    togglesettingseditor.cpp \
-    textfieldsettingseditor.cpp \
     tabssettingseditor.cpp \
     snackbarsettingseditor.cpp \
     dialogsettingseditor.cpp \
     drawersettingseditor.cpp \
     scrollbarsettingseditor.cpp \
-    appbarsettingseditor.cpp \
     autocompletesettingseditor.cpp \
     menusettingseditor.cpp
 HEADERS = mainwindow.h \
     avatarsettingseditor.h \
-    badgesettingseditor.h \
-    checkboxsettingseditor.h \
     fabsettingseditor.h \
     raisedbuttonsettingseditor.h \
     flatbuttonsettingseditor.h \
@@ -35,21 +27,24 @@ HEADERS = mainwindow.h \
     progresssettingseditor.h \
     circularprogresssettingseditor.h \
     slidersettingseditor.h \
-    radiobuttonsettingseditor.h \
-    togglesettingseditor.h \
-    textfieldsettingseditor.h \
     tabssettingseditor.h \
     snackbarsettingseditor.h \
     dialogsettingseditor.h \
     drawersettingseditor.h \
     scrollbarsettingseditor.h \
-    appbarsettingseditor.h \
     autocompletesettingseditor.h \
     menusettingseditor.h
-LIBS += $$top_builddir/components/$(OBJECTS_DIR)/libcomponents.a
+LIBS += -L$$top_builddir/components/$(OBJECTS_DIR)/ \
+        -lcomponents
+
 INCLUDEPATH += $$top_srcdir/components/
 TARGET = examples-exe
-PRE_TARGETDEPS += $$top_builddir/components/$(OBJECTS_DIR)/libcomponents.a
+
+win32{
+    PRE_TARGETDEPS += $$top_builddir/components/$(OBJECTS_DIR)/components.lib
+} else {
+    PRE_TARGETDEPS += $$top_builddir/components/$(OBJECTS_DIR)/libcomponents.a
+}
 
 RESOURCES += \
     examples.qrc
@@ -57,7 +52,6 @@ RESOURCES += \
 FORMS += \
     avatarsettingsform.ui \
     badgesettingsform.ui \
-    checkboxsettingsform.ui \
     fabsettingsform.ui \
     flatbuttonsettingsform.ui \
     iconbuttonsettingsform.ui \
@@ -65,11 +59,7 @@ FORMS += \
     circularprogresssettingsform.ui \
     slidersettingsform.ui \
     snackbarsettingsform.ui \
-    radiobuttonsettingsform.ui \
-    togglesettingsform.ui \
-    textfieldsettingsform.ui \ 
     tabssettingsform.ui \
     dialogsettingsform.ui \
     drawersettingsform.ui \
-    scrollbarsettingsform.ui \
-    appbarsettingsform.ui
+    scrollbarsettingsform.ui
